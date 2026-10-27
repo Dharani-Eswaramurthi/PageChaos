@@ -1,0 +1,15 @@
+name: Feature request
+description: Describe a pagination testing problem you cannot cover.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The developer problem
+      description: Explain the consumer behavior, API contract, and current workaround.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: A synthetic example
+      description: Explain what a passing and failing test should look like.

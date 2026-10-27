@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible pagination or library defect.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Use synthetic fixtures only. Report security issues privately.
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: PageChaos, Python, HTTPX, and operating system.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: A small scenario and consumer that demonstrate the problem.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Include the relevant findings or traceback, with secrets removed.
+    validations:
+      required: true
