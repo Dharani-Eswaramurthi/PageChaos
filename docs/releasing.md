@@ -30,7 +30,7 @@ The two indexes receive the same built artifacts from a single release run.
 The production job has only artifact download and publishing steps.
 Only publishing jobs receive id-token: write.
 
-The TestPyPI upload allows existing filenames for reruns. The subsequent wheel
+The TestPyPI upload allows existing filenames for reruns. The subsequent artifact
 hash check must still match this run's build, so a changed artifact with an
 already-used version cannot proceed to production. Use a new alpha version
 when changing release contents after an upload.
