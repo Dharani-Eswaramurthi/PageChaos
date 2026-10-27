@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "scenario": "short-page-with-continuation",
+  "ok": false,
+  "expected_count": 30,
+  "observed_count": 13,
+  "unique_count": 13,
+  "request_count": 2,
+  "terminal_reached": false,
+  "budget_exceeded": false,
+  "record_budget": 100,
+  "record_budget_exceeded": false,
+  "missing_ids": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "duplicate_ids": [],
+  "unexpected_ids": [],
+  "modified_ids": [],
+  "error_type": null,
+  "findings": [
+    {
+      "code": "MISSING_RECORDS",
+      "message": "17 snapshot record(s) missing."
+    },
+    {
+      "code": "CONTINUATION_REMAINING",
+      "message": "The last successful page had a continuation cursor."
+    },
+    {
+      "code": "NO_TERMINAL_RESPONSE",
+      "message": "A terminal response was not reached."
+    }
+  ],
+  "trace": [
+    {
+      "number": 1,
+      "method": "GET",
+      "path": "/items",
+      "cursor": null,
+      "status_code": 200,
+      "page_index": 0,
+      "record_count": 10,
+      "next_cursor": "pc_0001",
+      "fault": null
+    },
+    {
+      "number": 2,
+      "method": "GET",
+      "path": "/items",
+      "cursor": "pc_0001",
+      "status_code": 200,
+      "page_index": 1,
+      "record_count": 3,
+      "next_cursor": "pc_0002",
+      "fault": null
+    }
+  ]
+}
