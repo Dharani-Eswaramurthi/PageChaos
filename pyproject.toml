@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pagechaos"
+version = "0.1.0a1"
+description = "Offline pagination scenarios and completeness checks for Python API clients."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Dharani Eswaramurthi" }]
+keywords = ["pagination", "testing", "httpx", "pytest", "api", "sdk"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Software Development :: Testing",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/Dharani-Eswaramurthi/PageChaos"
+Source = "https://github.com/Dharani-Eswaramurthi/PageChaos"
+Issues = "https://github.com/Dharani-Eswaramurthi/PageChaos/issues"
+Documentation = "https://github.com/Dharani-Eswaramurthi/PageChaos/blob/main/docs/api.md"
+Changelog = "https://github.com/Dharani-Eswaramurthi/PageChaos/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+httpx = ["httpx>=0.28,<0.29"]
+pytest = ["httpx>=0.28,<0.29", "pytest>=8,<10"]
+dev = [
+  "httpx==0.28.1", "pytest==9.1.1", "hypothesis==6.170.12",
+  "ruff==0.17.3", "build==1.6.1", "mypy==1.20.2", "notion-client==3.1.0",
+  "twine==7.0.0",
+]
+
+[project.scripts]
+pagechaos = "pagechaos.__main__:main"
+
+[project.entry-points.pytest11]
+pagechaos = "pagechaos.pytest_plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pagechaos = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+filterwarnings = ["error"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/pagechaos"]

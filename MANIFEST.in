@@ -1,0 +1,6 @@
+include README.md LICENSE NOTICE SECURITY.md CITATION.cff CHANGELOG.md CONTRIBUTING.md requirements-dev.lock
+recursive-include docs *.md *.json
+recursive-include examples *.py
+recursive-include tests *.py
+global-exclude __pycache__ *.py[cod]
+recursive-include scripts *.py
