@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0 - stable
+
+- Stabilize the documented synchronous HTTPX, flat JSON cursor, fixed-snapshot
+  API and report schema version 1, with patch compatibility described in docs/api.md.
+- Fix request-budget exhaustion during iterator cleanup so audit returns a report
+  and preserves the original consumer error or record-limit finding.
+- Add regression coverage for both cleanup failure paths and for process-control
+  exceptions, which continue to propagate.
+- Verify fresh wheel installations, optional dependencies, installed pytest
+  discovery, audit regressions, module CLI behavior, and the console entry point
+  in validation and release workflows before publication.
+- Update package metadata, installation examples, citation, security policy, and
+  release guidance for stable releases.
+
+Publication date and artifact provenance are recorded on GitHub and PyPI.
+
 ## 0.1.0a1 — alpha, 27 October 2026
 
 - Add fixed-snapshot cursor scenarios with uneven and empty pages.

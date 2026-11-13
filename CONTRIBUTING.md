@@ -1,7 +1,7 @@
 # Contributing
 
-PageChaos is an early alpha. Small, reproducible failures and scenario corrections
-are especially useful.
+PageChaos tests fixed-snapshot cursor pagination. Small, reproducible failures and
+scenario corrections are especially useful.
 
 ## Setup
 
@@ -21,6 +21,8 @@ optional integrations.
     python -m ruff format --check .
     python -m mypy
     python -m build
+    python -m twine check --strict dist/*
+    python scripts/check_install.py
 
 Also run examples/short_pages.py and examples/notion_sdk.py with Python. The latter
 uses synthetic responses through the real SDK and does not call Notion.

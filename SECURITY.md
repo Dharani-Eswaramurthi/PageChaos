@@ -1,6 +1,6 @@
 # Security policy
 
-PageChaos is an alpha testing library. Use synthetic records and cursors: reports
+PageChaos is a pagination testing library. Use synthetic records and cursors: reports
 omit record bodies and raw exception messages, but identities, paths, and cursors
 remain visible.
 
@@ -9,6 +9,6 @@ Report vulnerabilities privately through
 Do not put credentials or private fixtures in public issues. For ordinary
 pagination defects, open a normal issue with a minimal synthetic reproduction.
 
-Only the latest alpha is maintained. There is no guaranteed response time.
+Only the latest stable release is maintained. There is no guaranteed response time.
 The injected HTTPX client is mocked; other clients and subprocesses are outside
 interception. Request and record budgets are cooperative, not process timeouts.

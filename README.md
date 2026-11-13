@@ -9,20 +9,20 @@
 Test whether your Python API client silently loses records, returns duplicates, or
 stops before a cursor-paginated export is complete.
 
-**Alpha: 0.1.0a1.** Synchronous HTTPX, flat JSON cursor responses, fixed snapshots.
+**Stable: 0.1.0.** Synchronous HTTPX, flat JSON cursor responses, fixed snapshots.
 Python 3.11+. CI exercises Linux on Python 3.11–3.15, plus Windows and macOS on Python 3.12.
 
 PageChaos runs your existing consumer against an in-process mock transport. It
 compares collected records with a known snapshot and explains pagination failures.
 It does not replace your paginator or retry policy.
 
-## Install the alpha
+## Install
 
-    python -m pip install "pagechaos[httpx]==0.1.0a1"
+    python -m pip install "pagechaos[httpx]==0.1.0"
 
 For the optional pytest fixture:
 
-    python -m pip install "pagechaos[pytest]==0.1.0a1"
+    python -m pip install "pagechaos[pytest]==0.1.0"
 
 For development, clone this repository and install the local checkout:
 
@@ -183,6 +183,8 @@ Community maintenance has no guaranteed response time.
     python -m ruff format --check .
     python -m mypy
     python -m build
+    python -m twine check --strict dist/*
+    python scripts/check_install.py
 
 Activate the virtual environment or use its Python executable for these commands.
 [Contributing](https://github.com/Dharani-Eswaramurthi/PageChaos/blob/main/CONTRIBUTING.md).
