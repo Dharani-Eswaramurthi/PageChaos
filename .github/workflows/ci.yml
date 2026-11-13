@@ -40,3 +40,4 @@ jobs:
       - run: python scripts/check_release.py
       - run: python -m build
       - run: python -m twine check --strict dist/*
+      - run: python scripts/check_install.py

@@ -1,5 +1,14 @@
 # API and contract
 
+## Stability and compatibility
+
+Version 0.1.0 is stable for the synchronous HTTPX, flat JSON cursor, fixed-snapshot
+contract documented here. Patch releases in 0.1.x preserve the public exports,
+call signatures, and report schema version 1. Fixes may make an audit fail when
+it previously passed incorrectly; such corrections are described in the changelog.
+Incompatible API or report-schema changes require a new minor version and migration
+notes. Async, nested envelopes, and other roadmap proposals are outside this contract.
+
 ## CursorScenario
 
 CursorScenario(records, *, page_size=10, page_sizes=None, cursor_tokens=None,
@@ -74,6 +83,8 @@ max_requests is the number of requests the scenario will dispatch. The next atte
 raises RequestBudgetExceeded, an audit control signal derived from BaseException.
 This intentionally bypasses ordinary except Exception retry handlers. The runner
 catches it and records a finding. The blocked attempt is not included in trace.
+This also applies to requests made while closing the consumer iterator. If cleanup
+exhausts the request budget after another failure, both findings are retained.
 
 max_records defaults to max(100, 2 * snapshot size). The runner stops when an
 additional yielded record would exceed that limit and closes a closable iterator

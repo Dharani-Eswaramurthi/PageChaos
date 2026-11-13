@@ -91,6 +91,8 @@ def audit(
             if callable(close):
                 try:
                     close()
+                except RequestBudgetExceeded:
+                    budget_exceeded = True
                 except Exception as exc:
                     if error is None:
                         error = exc

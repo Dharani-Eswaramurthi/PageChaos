@@ -359,6 +359,50 @@ def test_iterator_cleanup_runs_before_client_is_closed():
     assert closed == [False]
 
 
+@pytest.mark.parametrize(
+    "last_record, stop_code",
+    [({"id": 2}, "RECORD_BUDGET_EXCEEDED"), (42, "CLIENT_ERROR")],
+)
+def test_request_budget_during_iterator_cleanup_returns_a_report(last_record, stop_code):
+    def consumer(client):
+        try:
+            yield from client.get("/items").json()["items"]
+            yield last_record
+        finally:
+            client.get("/items")
+
+    report = audit(
+        consumer,
+        scenario=CursorScenario([{"id": 1}]),
+        max_requests=1,
+        max_records=1 if stop_code == "RECORD_BUDGET_EXCEEDED" else 2,
+    )
+    assert report.records == ({"id": 1},)
+    assert report.request_count == 1
+    assert report.budget_exceeded
+    assert {stop_code, "REQUEST_BUDGET_EXCEEDED"} <= codes(report)
+    if stop_code == "CLIENT_ERROR":
+        assert isinstance(report.error, TypeError)
+    else:
+        assert report.record_budget_exceeded
+        assert report.error is None
+    with pytest.raises(PaginationAssertionError, match="REQUEST_BUDGET_EXCEEDED"):
+        report.assert_complete()
+
+
+@pytest.mark.parametrize("exception", [KeyboardInterrupt, SystemExit])
+def test_process_control_exceptions_during_iterator_cleanup_propagate(exception):
+    def consumer(client):
+        try:
+            yield from client.get("/items").json()["items"]
+            yield {"id": 2}
+        finally:
+            raise exception()
+
+    with pytest.raises(exception):
+        audit(consumer, scenario=CursorScenario([{"id": 1}]), max_records=1)
+
+
 def test_yielding_without_requests_is_bounded():
     closed = []
 

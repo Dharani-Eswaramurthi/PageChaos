@@ -38,6 +38,7 @@ jobs:
         run: python scripts/check_release.py --require-tag
       - run: python -m build
       - run: python -m twine check --strict dist/*
+      - run: python scripts/check_install.py
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: release-distributions

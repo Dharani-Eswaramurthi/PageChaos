@@ -1,6 +1,6 @@
 # Roadmap and decision gates
 
-## Current alpha
+## Current stable scope
 
 Synchronous HTTPX, flat cursor envelopes, fixed response schedules, one-shot
 faults, strict snapshot comparison, JSON reports, a pytest fixture, and CLI demos.
@@ -8,7 +8,7 @@ An existing Notion SDK helper provides one offline compatibility case.
 
 ## Next validation milestone
 
-Ask independent SDK/connector maintainers to try the alpha. No outreach has been
+Ask independent SDK/connector maintainers to try PageChaos. No outreach has been
 sent. Measure integration changes, whether tests are retained in CI, and whether
 diagnostics help fix a defect. Expand only when that feedback justifies it.
 

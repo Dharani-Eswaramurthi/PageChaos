@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pagechaos"
-version = "0.1.0a1"
+version = "0.1.0"
 description = "Offline pagination scenarios and completeness checks for Python API clients."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -13,7 +13,7 @@ license-files = ["LICENSE", "NOTICE"]
 authors = [{ name = "Dharani Eswaramurthi" }]
 keywords = ["pagination", "testing", "httpx", "pytest", "api", "sdk"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
