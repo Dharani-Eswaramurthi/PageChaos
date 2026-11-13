@@ -1,6 +1,44 @@
 # Validation record
 
-Date: 27 October 2026. Status: local alpha, 0.1.0a1.
+## Stable 0.1.0 release preparation - 13 November 2026
+
+The stable candidate preserves the documented synchronous HTTPX, flat JSON
+cursor, fixed-snapshot contract and report schema version 1.
+
+- 106 tests pass locally on Windows, Python 3.12.14, including the runnable pytest
+  example and the two property tests with 150 and 75 examples.
+- Four new regression cases cover request-budget exhaustion during iterator
+  cleanup after either the record limit or invalid output, and propagation of
+  KeyboardInterrupt and SystemExit from cleanup. Both budget failures return
+  reports with the earlier failure retained.
+- scripts/check_install.py checks an isolated core wheel installation, the missing
+  optional-dependency message, the pytest extra and fixture, the audit suite,
+  module CLI success/failure behavior, and the console entry point. Both CI and
+  the release build require this check before publishing.
+- The local fresh-wheel check passed all 58 installed audit/example cases,
+  core-only import and scenario checks, both module CLI outcomes, and the console
+  entry point. Ruff lint/format, strict mypy, dependency consistency, release
+  identity, and source/wheel builds also pass locally.
+
+The new candidate must pass its own full CI matrix, strict Twine checks, and the
+TestPyPI artifact verification before production publication. Local results alone
+do not establish that the stable version has been published. Publication status
+and provenance are recorded on GitHub and PyPI.
+
+## Published alpha evidence
+
+The published v0.1.0a1 tag, commit 3f60e4c, completed all seven validation jobs:
+Linux on Python 3.11-3.15, Windows on Python 3.12, and macOS on Python 3.12.
+The release workflow also completed TestPyPI publication, artifact verification,
+and the reviewed PyPI upload on 27 October 2026.
+
+- [Alpha validation run](https://github.com/Dharani-Eswaramurthi/PageChaos/actions/runs/40473699136)
+- [Alpha release run](https://github.com/Dharani-Eswaramurthi/PageChaos/actions/runs/40473908678)
+- [PyPI release history](https://pypi.org/project/pagechaos/#history)
+
+## Original alpha validation - 27 October 2026
+
+The following sections retain the original local 0.1.0a1 validation record.
 
 ## What has been validated
 
@@ -21,8 +59,8 @@ Date: 27 October 2026. Status: local alpha, 0.1.0a1.
   synthetic block-list responses, short and empty pages, and a dummy token.
   This is an offline compatibility test, not live service verification.
 
-The local check results and build verification are recorded below. The prepared
-GitHub Actions matrix has not run here.
+The original local check results and build verification are recorded below.
+Subsequent public alpha CI evidence is linked above.
 
 ## Evidence behind the test cases
 
@@ -79,9 +117,8 @@ The following checks passed locally on Windows, Python 3.12.14:
   pytest fixture, module CLI, and installed console entry point.
 - Build of both the source distribution and the pure-Python wheel.
 
-The build artifacts are local alpha outputs. The prepared GitHub Actions matrix
-has not run, so Python versions other than 3.12 and operating systems other than
-Windows have not yet been verified. Track public CI and release status at https://github.com/Dharani-Eswaramurthi/PageChaos/actions.
+These build artifacts were local alpha outputs. Cross-platform alpha validation
+subsequently passed as recorded above. Each new release must pass its own CI run.
 
 
 ## Public-release preparation
